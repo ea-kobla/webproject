@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_fp.css">
+    <title>MagsDentalGH</title>
+    <style>
+        body{
+        background: url(/images/download.jpeg);
+        color:rgb(0, 0, 0);
+        background-size: cover;
+        background-attachment: fixed;
+    }
+        </style>
+</head>
+
+
+<header class="header">
+    <a href="index.html" class="logo">
+       <h2>Mags<span>DentalCare</span></h2>
+    </a>
+
+    <input type="checkbox" id="check">
+    <label for="check" class="icons">
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <i class='bx bx-x' id="close-icon"></i>
+    </label>
+
+<nav class="navbar">
+    <a href="services.html" style="--i:1">Services</a>
+    <a href="admin.html" style="--i:1">Admin</a>
+</nav>
+</header>
+
+<div class="mainlogpage">
+<body>
+    <h1 id="msg"></h1>
+   <form>
+    <h2 class="name">Name</h2>
+       <input class="names" type="text" name="name" placeholder="Name"><br><br>
+
+        <h2 class="mail">Email</h2>
+        <input class="mails" type="email" name="email" placeholder="Email"><br><br>
+
+        <h2 class="number">Phone Number</h2>
+        <input class="telnumber" type="tel" name="phone" placeholder="Phone"><br><br>
+
+        <h2 class="aptinfo">What's your appointment?</h2>
+        <input class="textbox" type="text" name="message" placeholder=" "><br><br>
+
+        <input type="Submit" id="sub">
+
+   </form>
+</div>
+    <a href="index.html">
+    <div class="return">
+        <h3>Click here to return to homepage after booking</h3>
+    </div>
+    </a>
+
+
+   <script>
+    let form = document.querySelector("form");
+  
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.querySelector("#sub").value="Booking Appointment....";
+      let data = new FormData(form);
+  
+      fetch('https://script.google.com/macros/s/AKfycbwtIF5UQoqOgSasV-KwlefVmWdq_uXb9qVN7J8S5PNZPln7qXUrbNguHE7BfyoInFSJlQ/exec', {
+        method: "POST",
+        body: data
+      })
+        .then(res => res.text())
+        .then(data => {
+            document.querySelector("#msg").innerHTML=data;
+            document.querySelector("#sub").value="Appointed Booked Successfully!";
+        });
+    });
+  </script>
+    
+</body>
+</html>
